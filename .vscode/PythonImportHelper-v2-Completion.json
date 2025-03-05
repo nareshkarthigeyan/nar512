@@ -76,7 +76,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def compression(input):\n    a = 0x6a09e667\n    b = 0xbb67ae85\n    c = 0x3c6ef372\n    d = 0xa54ff53a\n    e = 0x510e527f\n    f = 0x9b05688c\n    g = 0x1f83d9ab\n    h = 0x5be0cd19\n    constant = [a, b, c, d, e, f, g, h]",
+        "peekOfCode": "def compression(input):\n    a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p = [\n    0xcbbb9d5d, 0x629a292a, 0x9159015a, 0x152fecd8,\n    0x67332667, 0x8eb44a87, 0xdb0c2e0d, 0x47b5481d,\n    0xe19b48a8, 0xc5c95a63, 0xa1e38b93, 0x29d070bb,\n    0x5c26c926, 0x33a7d98e, 0x4aab5db7, 0x4f7a04dd\n]\n    for i in range(len(input)):\n        t1 = (int(input[i], 2) + int(sigma(format(e, '032b')), 2) + int(bigM(format(g, '032b')), 2) + left_rotate(a, 5, 32)) % 4294967295\n        t2 = (int(bigM(format(j, '032b')), 2) + int(sigma(format(l, '032b')), 2) + right_rotate(n, 7, 32)) % 4294967295",
         "detail": "main",
         "documentation": {}
     },
@@ -94,7 +94,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def nar512(input):\n    padded = padding(input)\n    # print(padded)\n    parts = compartmentalize(padded)\n    parsed = parsing(parts)\n    # print(len(parsed))\n    # print(toHash(parsed))\n    compressed = compression(parsed)\n    print(toHash(compressed))\nnar512(\"abcd\")",
+        "peekOfCode": "def nar512(input):\n    padded = padding(input)\n    # print(padded)\n    parts = compartmentalize(padded)\n    parsed = parsing(parts)\n    # print(len(parsed))\n    # print(toHash(parsed))\n    compressed = compression(parsed)\n    print(toHash(compressed))\n    print(len(toHash(compressed)))",
         "detail": "main",
         "documentation": {}
     }
