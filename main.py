@@ -94,8 +94,17 @@ def nar512(input):
     # print(len(parsed))
     # print(toHash(parsed))
     compressed = compression(parsed)
-    print(toHash(compressed))
-    print(len(toHash(compressed)))
+    return toHash(compressed)
 
 
-nar512("NARESH KARTHIGEYAN")
+string = nar512("NARESH KARTHIGEYAN")
+
+nonce = 0
+while not string.startswith("0"):
+    new_string = f"{string}{nonce:06d}" 
+    string = nar512(new_string)
+    print(string)
+    nonce += 1
+
+print(string)
+print(nonce)

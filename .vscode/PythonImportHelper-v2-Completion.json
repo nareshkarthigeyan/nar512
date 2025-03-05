@@ -94,7 +94,25 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def nar512(input):\n    padded = padding(input)\n    # print(padded)\n    parts = compartmentalize(padded)\n    parsed = parsing(parts)\n    # print(len(parsed))\n    # print(toHash(parsed))\n    compressed = compression(parsed)\n    print(toHash(compressed))\n    print(len(toHash(compressed)))",
+        "peekOfCode": "def nar512(input):\n    padded = padding(input)\n    # print(padded)\n    parts = compartmentalize(padded)\n    parsed = parsing(parts)\n    # print(len(parsed))\n    # print(toHash(parsed))\n    compressed = compression(parsed)\n    return toHash(compressed)\nstring = nar512(\"NARESH KARTHIGEYAN\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "string",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "string = nar512(\"NARESH KARTHIGEYAN\")\nnonce = 0\nwhile not string.startswith(\"0\"):\n    new_string = f\"{string}{nonce:06d}\" \n    string = nar512(new_string)\n    print(string)\n    nonce += 1\nprint(string)\nprint(nonce)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "nonce",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "nonce = 0\nwhile not string.startswith(\"0\"):\n    new_string = f\"{string}{nonce:06d}\" \n    string = nar512(new_string)\n    print(string)\n    nonce += 1\nprint(string)\nprint(nonce)",
         "detail": "main",
         "documentation": {}
     }
