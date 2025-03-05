@@ -4,7 +4,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def nPi(n):\n    piDigits = \"14159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211706798214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196442881097566593344612847564823378678316271201909145648566923460348610454326648213393607260249141273\"\n    return str(format(int(piDigits[n:n+8]) % 256, '08b'));\ndef left_rotate(x, n, w=8):\n    n = n % w\n    return ((x << n) | (x >> (w - n))) & ((1 << w) - 1)  # Mask to w bits\ndef right_rotate(x, n, w=8):\n    n = n % w\n    return ((x >> n) | (x << (w - n))) & ((1 << w) - 1)  # Mask to w\ndef sigma(input):",
+        "peekOfCode": "def nPi(n):\n    piDigits = \"14159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211706798214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196442881097566593344612847564823378678316271201909145648566923460348610454326648213393607260249141273\"\n    return format(int(piDigits[n % len(piDigits): (n % len(piDigits)) + 4]) % 65536, '016b')\ndef left_rotate(x, n, w=32):\n    n = n % w\n    return ((x << n) | (x >> (w - n))) & ((1 << w) - 1)  # Mask to w bits\ndef right_rotate(x, n, w=32):\n    n = n % w\n    return ((x >> n) | (x << (w - n))) & ((1 << w) - 1)  # Mask to w\ndef sigma(input):",
         "detail": "main",
         "documentation": {}
     },
@@ -13,7 +13,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def left_rotate(x, n, w=8):\n    n = n % w\n    return ((x << n) | (x >> (w - n))) & ((1 << w) - 1)  # Mask to w bits\ndef right_rotate(x, n, w=8):\n    n = n % w\n    return ((x >> n) | (x << (w - n))) & ((1 << w) - 1)  # Mask to w\ndef sigma(input):\n    num = int(input, 2)\n    piVal = int(nPi(num), 2) \n    a = num ^ piVal",
+        "peekOfCode": "def left_rotate(x, n, w=32):\n    n = n % w\n    return ((x << n) | (x >> (w - n))) & ((1 << w) - 1)  # Mask to w bits\ndef right_rotate(x, n, w=32):\n    n = n % w\n    return ((x >> n) | (x << (w - n))) & ((1 << w) - 1)  # Mask to w\ndef sigma(input):\n    num = int(input, 2)\n    piVal = int(nPi(num), 2) \n    a = num ^ piVal",
         "detail": "main",
         "documentation": {}
     },
@@ -22,7 +22,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def right_rotate(x, n, w=8):\n    n = n % w\n    return ((x >> n) | (x << (w - n))) & ((1 << w) - 1)  # Mask to w\ndef sigma(input):\n    num = int(input, 2)\n    piVal = int(nPi(num), 2) \n    a = num ^ piVal\n    b = right_rotate(num, 7, 8) ^ left_rotate(num, 3, 8)\n    c = (num + piVal) % 256\n    result = a ^ b ^ c ",
+        "peekOfCode": "def right_rotate(x, n, w=32):\n    n = n % w\n    return ((x >> n) | (x << (w - n))) & ((1 << w) - 1)  # Mask to w\ndef sigma(input):\n    num = int(input, 2)\n    piVal = int(nPi(num), 2) \n    a = num ^ piVal\n    b = right_rotate(num, 7, 32) ^ left_rotate(num, 3, 16)\n    c = (num + piVal) % 4294967295\n    result = a ^ b ^ c ",
         "detail": "main",
         "documentation": {}
     },
@@ -31,7 +31,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def sigma(input):\n    num = int(input, 2)\n    piVal = int(nPi(num), 2) \n    a = num ^ piVal\n    b = right_rotate(num, 7, 8) ^ left_rotate(num, 3, 8)\n    c = (num + piVal) % 256\n    result = a ^ b ^ c \n    return format(result % 256, '08b')\ndef bigM(input):\n    num = int(input, 2)",
+        "peekOfCode": "def sigma(input):\n    num = int(input, 2)\n    piVal = int(nPi(num), 2) \n    a = num ^ piVal\n    b = right_rotate(num, 7, 32) ^ left_rotate(num, 3, 16)\n    c = (num + piVal) % 4294967295\n    result = a ^ b ^ c \n    return format(result % 512, '032b')\ndef bigM(input):\n    num = int(input, 2)",
         "detail": "main",
         "documentation": {}
     },
@@ -40,7 +40,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def bigM(input):\n    num = int(input, 2)\n    piVal = int(nPi(num), 2)\n    a = right_rotate(num, 23, 8)\n    b = left_rotate(num, 11, 8)\n    c = (num * piVal) % 256\n    res = a ^ b ^ c\n    return format(res % 256, '08b')\ndef padding(input):\n    length = len(input)",
+        "peekOfCode": "def bigM(input):\n    num = int(input, 2)\n    piVal = int(nPi(num), 2)\n    a = right_rotate(num, 23, 32)\n    b = left_rotate(num, 11, 32)\n    c = (num * piVal) % 512\n    res = a ^ b ^ c\n    return format(res % 512, '032b')\ndef padding(input):\n    length = len(input)",
         "detail": "main",
         "documentation": {}
     },
@@ -49,7 +49,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def padding(input):\n    length = len(input)\n    res = ''.join(format(ord(i), '08b') for i in input)\n    res += \"1\"\n    while len(res) % 512 != 448:\n        res += \"0\"\n    res += format(length, '064b')\n    return res\ndef compartmentalize(input):\n    res = []",
+        "peekOfCode": "def padding(input):\n    length = len(input)\n    res = ''.join(format(ord(i), '08b') for i in input)\n    res += \"1\"\n    while len(res) % 512 != 504:\n        res += \"0\"\n    res += format(length, '08b')\n    return res\ndef compartmentalize(input):\n    res = []",
         "detail": "main",
         "documentation": {}
     },
@@ -58,25 +58,25 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def compartmentalize(input):\n    res = []\n    for i in range(0, len(input), 8):\n        res.append(input[i:i+8]);\n    return res\ndef salting(input):\n    res = []\n    for i in range(0, len(input)):\n        val = int(sigma(input[i % len(input)]), 2) \n        val ^= int(bigM(input[(i + 8) % len(input)]), 2)",
+        "peekOfCode": "def compartmentalize(input):\n    res = []\n    for i in range(0, len(input), 32):\n        res.append(input[i:i+32]);\n    return res\ndef parsing(input):\n    res = []\n    for i in input:\n        res.append(i)\n    for i in range(len(input), 64):",
         "detail": "main",
         "documentation": {}
     },
     {
-        "label": "salting",
+        "label": "parsing",
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def salting(input):\n    res = []\n    for i in range(0, len(input)):\n        val = int(sigma(input[i % len(input)]), 2) \n        val ^= int(bigM(input[(i + 8) % len(input)]), 2)\n        val = left_rotate(val + i * 17, i % 8, 8)\n        res.append(format(val, '08b'))\n    return res\ndef mixing(input):\n    res = []",
+        "peekOfCode": "def parsing(input):\n    res = []\n    for i in input:\n        res.append(i)\n    for i in range(len(input), 64):\n        val = int(sigma(input[i % len(input)]), 2) \n        val ^= int(bigM(input[(i + 8) % len(input)]), 2)\n        val += left_rotate(val + i * 17, i % 32)\n        val += int(res[i - 16], 2)\n        val ^= right_rotate(int(res[i - 2], 2) * 19, i % 32)",
         "detail": "main",
         "documentation": {}
     },
     {
-        "label": "mixing",
+        "label": "compression",
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def mixing(input):\n    res = []\ndef toHash(input):\n    hash = ''\n    for i in input:\n        num = int(i, 2);\n        hash += format(num, '0x')\n    return hash\ndef nar512(input):\n    padded = padding(input)",
+        "peekOfCode": "def compression(input):\n    a = 0x6a09e667\n    b = 0xbb67ae85\n    c = 0x3c6ef372\n    d = 0xa54ff53a\n    e = 0x510e527f\n    f = 0x9b05688c\n    g = 0x1f83d9ab\n    h = 0x5be0cd19\n    constant = [a, b, c, d, e, f, g, h]",
         "detail": "main",
         "documentation": {}
     },
@@ -85,7 +85,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def toHash(input):\n    hash = ''\n    for i in input:\n        num = int(i, 2);\n        hash += format(num, '0x')\n    return hash\ndef nar512(input):\n    padded = padding(input)\n    parts = compartmentalize(padded)\n    # print(parts)",
+        "peekOfCode": "def toHash(input):\n    hash = ''\n    for i in input:\n        num = int(i, 2);\n        hash += format(num, 'x')\n    return hash\ndef nar512(input):\n    padded = padding(input)\n    # print(padded)\n    parts = compartmentalize(padded)",
         "detail": "main",
         "documentation": {}
     },
@@ -94,7 +94,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def nar512(input):\n    padded = padding(input)\n    parts = compartmentalize(padded)\n    # print(parts)\n    salted = salting(parts)\n    # print(salted)\n    # print(toHash(parts))\n    print(toHash(salted))\nnar512(\"abcd\")",
+        "peekOfCode": "def nar512(input):\n    padded = padding(input)\n    # print(padded)\n    parts = compartmentalize(padded)\n    parsed = parsing(parts)\n    # print(len(parsed))\n    # print(toHash(parsed))\n    compressed = compression(parsed)\n    print(toHash(compressed))\nnar512(\"abcd\")",
         "detail": "main",
         "documentation": {}
     }
