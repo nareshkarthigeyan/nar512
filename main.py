@@ -118,7 +118,7 @@ def nar512(input):
     compressed = compression(salted)
     return toHash(compressed)
 
-str = "abcsdvkjnsdjkvnsd"
+str = "abc"
 start_time = time.time()
 string = nar512(str.encode())
 end_time = time.time()

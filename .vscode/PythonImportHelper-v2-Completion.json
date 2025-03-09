@@ -121,7 +121,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def nar512(input):\n    padded = padding(input)\n    parts = compartmentalize(padded)\n    parsed = parsing(parts)\n    salted = salting(parsed)\n    compressed = compression(salted)\n    return toHash(compressed)\nstr = \"abcsdvkjnsdjkvnsd\"\nstart_time = time.time()\nstring = nar512(str.encode())",
+        "peekOfCode": "def nar512(input):\n    padded = padding(input)\n    parts = compartmentalize(padded)\n    parsed = parsing(parts)\n    salted = salting(parsed)\n    compressed = compression(salted)\n    return toHash(compressed)\nstr = \"abc\"\nstart_time = time.time()\nstring = nar512(str.encode())",
         "detail": "main",
         "documentation": {}
     },
@@ -130,7 +130,7 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "str = \"abcsdvkjnsdjkvnsd\"\nstart_time = time.time()\nstring = nar512(str.encode())\nend_time = time.time()\nprint(f\"NAR512: {string}\")\nprint(f\"Length of hashed value: {len(string)}\")\nprint(f\"Time taken for NAR512: {end_time - start_time} seconds\")",
+        "peekOfCode": "str = \"abc\"\nstart_time = time.time()\nstring = nar512(str.encode())\nend_time = time.time()\nprint(f\"NAR512: {string}\")\nprint(f\"Length of hashed value: {len(string)}\")\nprint(f\"Time taken for NAR512: {end_time - start_time} seconds\")",
         "detail": "main",
         "documentation": {}
     },
