@@ -18,11 +18,10 @@ def right_rotate(x, n, w=32):
 
 
 def salt(input):
-
     input = list(input)
     salt = ""
     length = len(input)
-    while(length < 5):
+    while length < 5:
         input += input
         length = len(input)
 
@@ -37,7 +36,7 @@ def salt(input):
         chosen = ord(input[i % length])
         salt += chr(chosen)
 
-    return "".join(salt)
+    return salt
 
 
 def sigma(input):
@@ -127,11 +126,8 @@ def compression(input):
 
 
 def toHash(input):
-    hash = ''
-    for i in input:
-        num = int(i, 2);
-        hash += format(num, 'x')
-    return hash
+    return ''.join(format(int(i, 2), 'x') for i in input)
+
 
 def nar512(input):
     padded = padding(salt(input) + input)
@@ -148,4 +144,3 @@ end_time = time.time()
 print(f"NAR512: {string}")
 print(f"Length of hashed value: {len(string)}")
 print(f"Time taken for NAR512: {end_time - start_time} seconds")
-
