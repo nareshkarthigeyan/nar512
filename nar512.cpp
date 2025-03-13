@@ -43,8 +43,8 @@ void padding(string input){
         padded.push_back(bitset<8>((bitLen >> (i * 8)) & 0xFF));
     }
 
-    for (auto i: padded) cout << i << endl;
-    cout << padded.size() << endl;
+    // for (auto i: padded) cout << i << endl;
+    // cout << padded.size() << endl;
 }
 
 void compartmentalize(){
@@ -81,16 +81,17 @@ void parsing(){
     cout << "Losgistic: " << endl;
     for (auto i : compartment){
         logisticMap(i, 3.99);
-        cout << i << endl;
+        cout << hex << i.to_ulong();
     }
+    cout << endl;
 }
 
 int main(void){
     string str;
     getline(cin, str);
     padding(str);
-    // compartmentalize();
-    // parsing();
+    compartmentalize();
+    parsing();
 
 }
 
