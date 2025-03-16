@@ -18,6 +18,6 @@ def longest_common_substring(s1, s2):
     return s1[longest_end - longest: longest_end]
 
 if __name__ == '__main__':
-    string1, string2 =  "74ff483e8fce9f62df3c6c9f717d16503994aac039618dc0d1dbbf8acdb25bbc" ,  "9c62f63535ba7a0eb8a7ef4d8176e252e96bfbac5e92eff20ec6e88d08d52ff5"
+    string1, string2 =  "2edc986847e209b4016e141a6dc8716d3207350f416969382d431539bf292e4a" ,  "222c1ebd08b8bd0fc753062825620c12768de04718ceb705c17e041f9877150b"
     result = longest_common_substring(string1, string2)
     print(result,",", len(result))

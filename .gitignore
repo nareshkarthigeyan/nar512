@@ -1,1 +1,5 @@
 .vscode
+build
+nar512.dSYM
+test_nar512.cpp
+test_nar512
