@@ -331,5 +331,14 @@
         "peekOfCode": "end_time = time.time()\nprint(f\"NAR512: {string}\")\nprint(f\"Length of hashed value: {len(string)}\")\nprint(f\"Time taken for NAR512: {end_time - start_time} seconds\")",
         "detail": "nar512",
         "documentation": {}
+    },
+    {
+        "label": "longest_common_substring",
+        "kind": 2,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "def longest_common_substring(s1, s2):\n    m, n = len(s1), len(s2)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n    longest = 0\n    longest_end = 0 \n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            if s1[i - 1] == s2[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1] + 1\n                if dp[i][j] > longest:",
+        "detail": "test",
+        "documentation": {}
     }
 ]
