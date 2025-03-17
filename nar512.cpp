@@ -7,6 +7,7 @@
 #include <math.h>
 #include <chrono>
 #include <sstream>
+#include <vector>
 
 #define ROTL(x, n, w) (((x) << (n)) | ((x) >> ((w) - (n)))) & UINT32_MAX
 #define ROTR(x, n, w) (((x) >> (n)) | ((x) << ((w) - (n)))) & UINT32_MAX
@@ -190,30 +191,30 @@ string nar512(string input){
     // return "";
 }
 
-
-int main(void){
-    string str = "";
-    getline(cin, str);
+// int main(void){
+//     string str = "";
+//     getline(cin, str);
     
-    auto start = chrono::high_resolution_clock::now();
+//     auto start = chrono::high_resolution_clock::now();
     
-    string output;
-    uint32_t nonce = 0;
-    string target = "00"; // Adjust the difficulty by changing the number of leading zeros
-    do {
-        cout << nonce << ": ";
-        string attempt = str + to_string(nonce);
-        cout << attempt << endl;
-        output = nar512(attempt);
-        cout << output << endl;
-        nonce++;
-    } while (output.substr(0, target.size()) != target);
+//     string output;
+//     cout << nar512(str) << endl;
+//     // uint32_t nonce = 0;
+//     // string target = "00"; // Adjust the difficulty by changing the number of leading zeros
+//     // do {
+//     //     cout << nonce << ": ";
+//     //     string attempt = str + to_string(nonce);
+//     //     cout << attempt << endl;
+//     //     output = nar512(attempt);
+//     //     cout << output << endl;
+//     //     nonce++;
+//     // } while (output.substr(0, target.size()) != target);
 
-    cout << "Hash: " << output << endl;
-    cout << "Nonce: " << nonce - 1 << endl;
+//     // cout << "Hash: " << output << endl;
+//     // cout << "Nonce: " << nonce - 1 << endl;
 
-    auto end = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-    cout << "Time: " << duration.count() / 1e6 << " seconds" << endl;
-    return 0;   
-}
+//     auto end = chrono::high_resolution_clock::now();
+//     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+//     cout << "Time: " << duration.count() / 1e6 << " seconds" << endl;
+//     return 0;   
+// }
