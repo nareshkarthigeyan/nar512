@@ -51,6 +51,7 @@ public:
 int main() {
     vector<int> sizes = {1, 10, 100, 250, 500, 1024, 5000, 10000};
     map<int, Times> timesMap;
+
     cout << left << setw(15) << "Char Length" 
          << setw(20) << "Average Time (sec)" 
          << setw(20) << "Total Time (sec)" << endl;
@@ -59,8 +60,8 @@ int main() {
     for (int size : sizes) {
         Times times;
         for (int i = 0; i < 1000; i++) {
-            string input = generateRandomString(size);
             clock_t start = clock();
+            string input = generateRandomString(size);
             nar512(input);
             clock_t end = clock();
             double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
