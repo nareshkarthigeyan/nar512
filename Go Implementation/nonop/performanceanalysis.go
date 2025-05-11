@@ -42,30 +42,30 @@ func (t *Times) Add(d time.Duration) {
 	t.averageTime = t.totalTime / time.Duration(t.count)
 }
 
-func main() {
-	rand.Seed(time.Now().UnixNano())
+// func main() {
+// 	rand.Seed(time.Now().UnixNano())
 
-	sizes := []int{1, 10, 100, 250, 500, 1024, 5000, 10000}
-	timesMap := make(map[int]Times)
+// 	sizes := []int{1, 10, 100, 250, 500, 1024, 5000, 10000}
+// 	timesMap := make(map[int]Times)
 
-	fmt.Printf("%-15s%-20s%-20s\n", "Char Length", "Average Time (s)", "Total Time (s)")
-	fmt.Println(strings.Repeat("-", 55))
+// 	fmt.Printf("%-15s%-20s%-20s\n", "Char Length", "Average Time (s)", "Total Time (s)")
+// 	fmt.Println(strings.Repeat("-", 55))
 
-	for _, size := range sizes {
-		var times Times
-		for i := 0; i < 1000; i++ {
-			input := generateRandomString(size)
-			start := time.Now()
-			hash := nar512(input)
-			_ = uint32sToHexString(hash) // Just to simulate usage
-			elapsed := time.Since(start)
-			times.Add(elapsed)
-		}
-		timesMap[size] = times
+// 	for _, size := range sizes {
+// 		var times Times
+// 		for i := 0; i < 1000; i++ {
+// 			input := generateRandomString(size)
+// 			start := time.Now()
+// 			hash := nar512(input)
+// 			_ = uint32sToHexString(hash) // Just to simulate usage
+// 			elapsed := time.Since(start)
+// 			times.Add(elapsed)
+// 		}
+// 		timesMap[size] = times
 
-		fmt.Printf("%-15d%-20.5f%-20.5f\n",
-				size,
-				times.averageTime.Seconds(),
-				times.totalTime.Seconds())
-	}
-}
+// 		fmt.Printf("%-15d%-20.5f%-20.5f\n",
+// 				size,
+// 				times.averageTime.Seconds(),
+// 				times.totalTime.Seconds())
+// 	}
+// }

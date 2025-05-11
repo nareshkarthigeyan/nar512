@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"time"
 	"math"
 	"math/bits"
 )
@@ -60,21 +62,23 @@ func padding(input string) []uint8 {
 	totalLen := ((soFar + 511) / 512) * 512
 	padded := make([]uint8, totalLen)
 
-	var salt uint = 0
+	var salt uint32 = 0
 
 	for i := 0; i < soFar; i++ {
 		ch := input[i]
 		padded[i] = ch
-		salt += ((salt << 5) + salt) + uint(ch)
+		salt ^= uint32(ch)
+		salt *= 16777619
 	}
 
 	// Padding start marker
 	if soFar < totalLen {
-		padded[soFar] = 1
+		padded[soFar] = uint8(salt)
 	}
 
 	i := 0
-	for j := soFar + 1; j < totalLen; {
+	var h uint32 = salt
+	for j := soFar + 1; j < totalLen - 4; {
 		numb := 0
 		for k := 0; k < 4 && j < totalLen; k++ {
 			index := (soFar + i + int(salt)) % len(PI)
@@ -84,7 +88,9 @@ func padding(input string) []uint8 {
 			numb += 10 * PI[index]
 			i++
 		}
-		padded[j] = uint8(numb % 255)
+		h ^= uint32(uint32(padded[(j-1)%soFar]) ^ uint32(numb))
+		h *= 0x5bd1e995
+		padded[j] = uint8((h >> 17) ^ (h & 0xFF))
 		j++
 	}
 	return padded
@@ -186,19 +192,19 @@ func nar512(input string) []uint32 {
 	return states
 }
 
-// func main(){
-// 	var input string;
-// 	fmt.Scan(&input)
+func balls(){
+	var input string = "My algorithm diverges from SHA-256 in both structure and philosophy. While SHA-256 relies on a fixed-round Merkle–Damgård construction with predefined constants, bitwise logical functions, and modular additions, my approach builds on this rigidity with a more chaotic, input-sensitive process. I use Pi-mapped vectors for padding and entropy injection, ensuring that the state space evolves in a highly non-deterministic way, influenced by both input length and byte patterns.Recursive overwrites further destabilize intermediate states, eliminating linear propagation chains often exploited in differential cryptanalysis. Unlike SHA-256, where the diffusion pattern is well-mapped and might get predictable after years of study, my algorithm mutates its own structure during runtime, making pre-image discovery and collision crafting significantly more difficult.While SHA-256 benefits from hardware acceleration and is standardized for broad compatibility, my design intentionally sacrifices some of that efficiency to maximize state volatility, making it better suited for environments where unpredictability and adaptive resistance are more critical than raw throughput.";
+	fmt.Scan(&input)
 
-// 	start := time.Now()
-// 	hash := nar512(input)
-// 	elapsed := time.Since(start)
+	start := time.Now()
+	hash := nar512(input)
+	elapsed := time.Since(start)
 
 
-// 	for _, ele := range hash {
-// 		fmt.Printf("%08x", ele)
-// 	}
-// 	fmt.Print("\nTime Elapsed: ");
-// 	fmt.Println(elapsed)
+	for _, ele := range hash {
+		fmt.Printf("%08x", ele)
+	}
+	fmt.Print("\nTime Elapsed: ");
+	fmt.Println(elapsed)
 
-// }
+}
